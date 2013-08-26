@@ -1,5 +1,6 @@
 # Mongoose Express Api
-## Flexible automatic API generation for Moongose and Express
+
+## Flexible automatic API generation for Moongose and Express
 
 ## Installation
 
