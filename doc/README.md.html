@@ -144,14 +144,14 @@ impl.addAction( &quot;search&quot;, searchAction );</code></pre>
 <pre><code class="lang-js">impl = api.setImplementation( myImpl );</code></pre>
 <h3>Securing api and middlewares</h3>
 <pre><code class="lang-js">impl.use(authMiddleware, function( action, resource ){
-  return action != &quot;read&quot; || action != &quot;list&quot; || resource == &quot;Admin&quot;;
+  return action != &quot;read&quot; &amp;&amp; action != &quot;list&quot; || resource == &quot;Admin&quot;;
 });</code></pre>
 
       </div>
     </div>
     <div id='footer'>
   Generated on
-  Mon Aug 26 2013 19:30:23 GMT+0200 (CEST)
+  Mon Aug 26 2013 20:48:07 GMT+0200 (CEST)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
   v1.7.2

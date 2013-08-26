@@ -130,8 +130,8 @@
       <ul class='summary'>
   <li>
     <span class='signature'>
-      <a href='#invalid-instance'>
-        - (void) <strong>invalid</strong>(req, res, data, errors)
+      <a href='#fail-instance'>
+        - (void) <strong>fail</strong>(req, res, errors)
       </a>
     </span>
     <span class='desc'>
@@ -141,7 +141,7 @@
   <li>
     <span class='signature'>
       <a href='#success-instance'>
-        - (void) <strong>success</strong>(req, res, data, errors)
+        - (void) <strong>success</strong>(req, res, data)
       </a>
     </span>
     <span class='desc'>
@@ -151,7 +151,7 @@
   <li>
     <span class='signature'>
       <a href='#error-instance'>
-        - (void) <strong>error</strong>(req, res, data, errors)
+        - (void) <strong>error</strong>(req, res, error)
       </a>
     </span>
     <span class='desc'>
@@ -174,22 +174,22 @@
       <h2>Instance Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
-    <p class='signature' id='invalid-instance'>
-      - (void) <strong>invalid</strong>(req, res, data, errors)
+    <p class='signature' id='fail-instance'>
+      - (void) <strong>fail</strong>(req, res, errors)
     </p>
     <div class='tags'>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='success-instance'>
-      - (void) <strong>success</strong>(req, res, data, errors)
+      - (void) <strong>success</strong>(req, res, data)
     </p>
     <div class='tags'>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='error-instance'>
-      - (void) <strong>error</strong>(req, res, data, errors)
+      - (void) <strong>error</strong>(req, res, error)
     </p>
     <div class='tags'>
 </div>
@@ -198,7 +198,7 @@
     </div>
     <div id='footer'>
   Generated on
-  Mon Aug 26 2013 19:30:23 GMT+0200 (CEST)
+  Mon Aug 26 2013 20:48:07 GMT+0200 (CEST)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
   v1.7.2
