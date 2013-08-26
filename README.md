@@ -72,6 +72,6 @@ impl = api.setImplementation( myImpl );
 
 ``` js
 impl.use(authMiddleware, function( action, resource ){
-  return action != "read" || action != "list" || resource == "Admin";
+  return action != "read" && action != "list" || resource == "Admin";
 });
 ```
