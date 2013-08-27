@@ -1,5 +1,6 @@
 Path = require("path")
 _ = require("lodash")
+Route = require("./route")
 
 class Implementation
   constructor: ->
@@ -10,6 +11,8 @@ class Implementation
 
   getActions: ->
     @actions
+
+  getMountedRoutes: ->
 
   putAction: (name, action) ->
     @actions[name] = action
@@ -62,10 +65,15 @@ class Implementation
         action = new ActionClass(resource, @responder)
         middlewares = @middlewaresFor(action)
         route = Path.join(mountPoint, resource.inflector.parameterize(), action.getRoute())
-
+        method = action.getMethod()
         # eg. app.get("/resource/:id", m1, m2, m3 .., invoke)
         args = [route].concat(middlewares)
         args.push(action.invoke)
-        app[action.getMethod()].apply(app, args)
+        app[method].apply(app, args)
+        mountedRoute = new Route(route, action)
+
+        resource.addMountedRoute(mountedRoute)
+        mountedRoute
+
 
 module.exports = Implementation

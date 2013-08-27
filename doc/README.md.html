@@ -117,6 +117,16 @@
       <div id='filecontents'>
         <h1>Mongoose Express Api</h1>
 <h2>Flexible automatic API generation for Moongose and Express</h2>
+<h3>Features</h3>
+<ul>
+<li>Unobtrusive mix routes into Express apps.</li>
+<li>Quick setup.</li>
+<li>RESTful ready to use default implementation with <code>CRUDL</code> (<code>create</code>, <code>read</code>, <code>update</code>, <code>destroy</code> and <code>list</code>) actions and <a href="http://labs.omniti.com/labs/jsend">JSend</a> responses. <code>list</code> action supports complex queries through <a href="https://github.com/adamjacobbecker/mongoose-api-query">moongose-api-query</a>. </li>
+<li>Setup middlewares to secure api and intercept requests.</li>
+<li>Choose which models to map and actions enabled to them.</li>
+<li>Flexible Interface: you can change everything, modifing actions and response formats, or replace the whole implementation to use different protocols or action sets. </li>
+<li>Automatic documentation generation.</li>
+</ul>
 <h2>Installation</h2>
 <pre><code>npm install mongoose-express-api</code></pre><p>or specify it as a dependency in <code>package.json</code></p><pre><code>&quot;dependencies&quot;: {
   &quot;mongoose-express-api&quot;: &quot;*&quot;
@@ -148,12 +158,18 @@ impl.addAction( &quot;search&quot;, searchAction );</code></pre>
 impl.use(authMiddleware, {if: function(action){
   return action.method != &quot;get&quot;;
 }});</code></pre>
+<h3>Generate Documentation</h3>
+<pre><code class="lang-js">api = new MongooseExpressApi({ title: &quot;My API&quot;, description: &quot;This API is for ..&quot;, version: &quot;1.0.0&quot; });
+api.resources(mongoose.models);
+
+api.mount(app, &quot;/api&quot;);
+api.mountDocumentation(app, &quot;/api/docs&quot;);</code></pre>
 
       </div>
     </div>
     <div id='footer'>
   Generated on
-  Tue Aug 27 2013 15:16:00 GMT+0200 (CEST)
+  Tue Aug 27 2013 17:53:55 GMT+0200 (CEST)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
   v1.7.2

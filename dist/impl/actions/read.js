@@ -15,6 +15,7 @@ Read = (function(_super) {
     Read.__super__.constructor.apply(this, arguments);
     this.route = "/:id";
     this.name = "read";
+    this.description = "Find and return an instance of {{resource}}.";
   }
 
   Read.prototype.invoke = function(req, res) {

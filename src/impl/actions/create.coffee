@@ -6,6 +6,7 @@ class Create extends Action
     super
     @method = "post"
     @name = "create"
+    @description = "Creates new {{resource}}."
 
   invoke: (req, res) =>
     objectProperty = @resource.inflector.object()

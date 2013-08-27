@@ -15,6 +15,7 @@ Update = (function(_super) {
     Update.__super__.constructor.apply(this, arguments);
     this.method = "put";
     this.name = "update";
+    this.description = "Update an instance of {{resource}}.";
   }
 
   Update.prototype.invoke = function(req, res) {

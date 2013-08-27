@@ -6,6 +6,8 @@ class Delete extends Action
     @route  = "/:id"
     @method = "delete"
     @name = "delete"
+    @description = "Deletes {{resource}}."
+
 
   invoke: (req, res) =>
     @resource.model.findById req.params.id, (err, object) =>

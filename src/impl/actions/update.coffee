@@ -6,6 +6,7 @@ class Update extends Action
     super
     @method = "put"
     @name = "update"
+    @description = "Update an instance of {{resource}}."
 
   invoke: (req, res) =>
     objectProperty = @resource.inflector.object()

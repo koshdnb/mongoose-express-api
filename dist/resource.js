@@ -8,6 +8,7 @@ Resource = (function() {
     this.options = options;
     this.actions = this.options.actions;
     this.inflector = new ResourceInflector(this);
+    this.mountedRoutes = [];
   }
 
   Resource.prototype.getName = function() {
@@ -16,6 +17,14 @@ Resource = (function() {
 
   Resource.prototype.getInflector = function() {
     return this.inflector;
+  };
+
+  Resource.prototype.getMountedRoutes = function() {
+    return this.mountedRoutes;
+  };
+
+  Resource.prototype.addMountedRoute = function(route) {
+    return this.mountedRoutes.push(route);
   };
 
   return Resource;

@@ -16,6 +16,7 @@ Delete = (function(_super) {
     this.route = "/:id";
     this.method = "delete";
     this.name = "delete";
+    this.description = "Deletes {{resource}}.";
   }
 
   Delete.prototype.invoke = function(req, res) {

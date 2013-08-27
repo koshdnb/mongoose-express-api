@@ -13,6 +13,8 @@ JsendResponder = (function(_super) {
   }
 
   JsendResponder.prototype.fail = function(req, res, errors) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
     return res.send({
       status: "fail",
       data: errors
@@ -20,6 +22,8 @@ JsendResponder = (function(_super) {
   };
 
   JsendResponder.prototype.success = function(req, res, data) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
     return res.send({
       status: "success",
       data: data
@@ -27,6 +31,8 @@ JsendResponder = (function(_super) {
   };
 
   JsendResponder.prototype.error = function(req, res, error) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
     return res.send({
       status: "error",
       error: error

@@ -1,5 +1,7 @@
-var Action,
+var Action, _,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+_ = require("lodash");
 
 Action = (function() {
   function Action(resource, responder) {
@@ -9,6 +11,7 @@ Action = (function() {
     this.method = "get";
     this.route = null;
     this.name = null;
+    this.description = null;
   }
 
   Action.prototype.getName = function() {
@@ -25,6 +28,18 @@ Action = (function() {
 
   Action.prototype.getRoute = function() {
     return this.route || "";
+  };
+
+  Action.prototype.getDescription = function() {
+    var context, desc;
+    desc = this.description || "";
+    context = {
+      resource: this.resource.inflector.object(),
+      resources: this.resource.inflector.collection()
+    };
+    return _.template(desc, context, {
+      interpolate: /\{\{([\s\S]+?)\}\}/g
+    });
   };
 
   Action.prototype.invoke = function(req, res) {};

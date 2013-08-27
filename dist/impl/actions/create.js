@@ -15,6 +15,7 @@ Create = (function(_super) {
     Create.__super__.constructor.apply(this, arguments);
     this.method = "post";
     this.name = "create";
+    this.description = "Creates new {{resource}}.";
   }
 
   Create.prototype.invoke = function(req, res) {

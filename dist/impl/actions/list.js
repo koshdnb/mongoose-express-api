@@ -14,6 +14,7 @@ List = (function(_super) {
     this.invoke = __bind(this.invoke, this);
     List.__super__.constructor.apply(this, arguments);
     this.name = "list";
+    this.description = "Lists {{resources}} filtering them depending on query string. Request queries are translated to database queries according to `https://github.com/adamjacobbecker/mongoose-api-query/blob/master/readme.md`.";
   }
 
   List.prototype.invoke = function(req, res) {

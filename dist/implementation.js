@@ -1,9 +1,11 @@
-var Implementation, Path, _,
+var Implementation, Path, Route, _,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 Path = require("path");
 
 _ = require("lodash");
+
+Route = require("./route");
 
 Implementation = (function() {
   function Implementation() {
@@ -16,6 +18,8 @@ Implementation = (function() {
   Implementation.prototype.getActions = function() {
     return this.actions;
   };
+
+  Implementation.prototype.getMountedRoutes = function() {};
 
   Implementation.prototype.putAction = function(name, action) {
     return this.actions[name] = action;
@@ -60,7 +64,7 @@ Implementation = (function() {
   };
 
   Implementation.prototype.mount = function(resource, app, mountPoint) {
-    var ActionClass, action, args, middlewares, name, route, _ref, _results;
+    var ActionClass, action, args, method, middlewares, mountedRoute, name, route, _ref, _results;
     if (mountPoint == null) {
       mountPoint = "/";
     }
@@ -72,9 +76,13 @@ Implementation = (function() {
         action = new ActionClass(resource, this.responder);
         middlewares = this.middlewaresFor(action);
         route = Path.join(mountPoint, resource.inflector.parameterize(), action.getRoute());
+        method = action.getMethod();
         args = [route].concat(middlewares);
         args.push(action.invoke);
-        _results.push(app[action.getMethod()].apply(app, args));
+        app[method].apply(app, args);
+        mountedRoute = new Route(route, action);
+        resource.addMountedRoute(mountedRoute);
+        _results.push(mountedRoute);
       } else {
         _results.push(void 0);
       }
