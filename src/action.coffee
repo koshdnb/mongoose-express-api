@@ -2,6 +2,13 @@ class Action
   constructor: (@resource, @responder) ->
     @method = "get"
     @route = null
+    @name = null
+
+  getName: ->
+    @name
+
+  getResource: ->
+    @resource
 
   getMethod: ->
     @method

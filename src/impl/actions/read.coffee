@@ -3,11 +3,12 @@ Action = require "../../action"
 class Read extends Action
 
   constructor: (@resource, @responder) ->
-    @route = "/:id"
     super
+    @route = "/:id"
+    @name = "read"
 
   invoke: (req, res) =>
-    @resource.model.findById req.params.id, (err, object) ->
+    @resource.model.findById req.params.id, (err, object) =>
       if err
         @responder.fail(req, res, {errors: err})
       else

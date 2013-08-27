@@ -12,11 +12,26 @@ JsendResponder = (function(_super) {
     return _ref;
   }
 
-  JsendResponder.prototype.invalid = function(req, res, data, errors) {};
+  JsendResponder.prototype.fail = function(req, res, errors) {
+    return res.send({
+      status: "fail",
+      data: errors
+    });
+  };
 
-  JsendResponder.prototype.success = function(req, res, data, errors) {};
+  JsendResponder.prototype.success = function(req, res, data) {
+    return res.send({
+      status: "success",
+      data: data
+    });
+  };
 
-  JsendResponder.prototype.error = function(req, res, data, errors) {};
+  JsendResponder.prototype.error = function(req, res, error) {
+    return res.send({
+      status: "error",
+      error: error
+    });
+  };
 
   return JsendResponder;
 

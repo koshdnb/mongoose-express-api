@@ -3,16 +3,16 @@ Action = require "../../action"
 class Update extends Action
   
   constructor: (@resource, @responder) ->
-    @route  = "/"
-    @method = "put"
     super
+    @method = "put"
+    @name = "update"
 
   invoke: (req, res) =>
     objectProperty = @resource.inflector.object()
     object = new @resource.model(req.body[objectProperty])
     object = object.toObject()
     delete object._id
-    @resource.model.update {_id: object.id}, object, (err) ->
+    @resource.model.update {_id: object.id}, object, (err) =>
       if err
         @responder.fail(req, res, {errors: err})
       else

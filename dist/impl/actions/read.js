@@ -3,7 +3,7 @@ var Action, Read,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-Action = require("../action");
+Action = require("../../action");
 
 Read = (function(_super) {
   __extends(Read, _super);
@@ -12,16 +12,25 @@ Read = (function(_super) {
     this.resource = resource;
     this.responder = responder;
     this.invoke = __bind(this.invoke, this);
-    this.route = "/:id";
     Read.__super__.constructor.apply(this, arguments);
+    this.route = "/:id";
+    this.name = "read";
   }
 
   Read.prototype.invoke = function(req, res) {
-    var object;
-    object = this.resource.model.findById(req.params.id, function() {
-      return this.responder.success(req, res, object);
+    var _this = this;
+    return this.resource.model.findById(req.params.id, function(err, object) {
+      var data;
+      if (err) {
+        return _this.responder.fail(req, res, {
+          errors: err
+        });
+      } else {
+        data = {};
+        data[_this.resource.inflector.object()] = object;
+        return _this.responder.success(req, res, data);
+      }
     });
-    return instance;
   };
 
   return Read;

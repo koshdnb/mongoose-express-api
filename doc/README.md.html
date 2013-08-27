@@ -142,16 +142,18 @@ impl.setResponder( myResponder );
 impl.addAction( &quot;search&quot;, searchAction );</code></pre>
 <h3>Replacing Implementation</h3>
 <pre><code class="lang-js">impl = api.setImplementation( myImpl );</code></pre>
-<h3>Securing api and middlewares</h3>
-<pre><code class="lang-js">impl.use(authMiddleware, function( action, resource ){
-  return action != &quot;read&quot; &amp;&amp; action != &quot;list&quot; || resource == &quot;Admin&quot;;
-});</code></pre>
+<h3>Securing api and using middlewares</h3>
+<pre><code class="lang-js">impl.use(myMiddleware);
+
+impl.use(authMiddleware, {if: function(action){
+  return action.method != &quot;get&quot;;
+}});</code></pre>
 
       </div>
     </div>
     <div id='footer'>
   Generated on
-  Mon Aug 26 2013 20:48:07 GMT+0200 (CEST)
+  Tue Aug 27 2013 15:16:00 GMT+0200 (CEST)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
   v1.7.2

@@ -8,7 +8,16 @@ Action = (function() {
     this.invoke = __bind(this.invoke, this);
     this.method = "get";
     this.route = null;
+    this.name = null;
   }
+
+  Action.prototype.getName = function() {
+    return this.name;
+  };
+
+  Action.prototype.getResource = function() {
+    return this.resource;
+  };
 
   Action.prototype.getMethod = function() {
     return this.method;

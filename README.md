@@ -69,10 +69,12 @@ impl.addAction( "search", searchAction );
 impl = api.setImplementation( myImpl );
 ```
  
-### Securing api and middlewares
+### Securing api and using middlewares
 
 ``` js
-impl.use(authMiddleware, function( action, resource ){
-  return action != "read" && action != "list" || resource == "Admin";
-});
+impl.use(myMiddleware);
+
+impl.use(authMiddleware, {if: function(action){
+  return action.method != "get";
+}});
 ```

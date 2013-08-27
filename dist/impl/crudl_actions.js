@@ -1,22 +1,22 @@
 var CRUDLActions, Create, Delete, List, Read, Update;
 
-Create = require("./create");
+Create = require("./actions/create");
 
-Read = require("./read");
+Read = require("./actions/read");
 
-Update = require("./update");
+Update = require("./actions/update");
 
-Delete = require("./delete");
+Delete = require("./actions/delete");
 
-List = require("./list");
+List = require("./actions/list");
 
 CRUDLActions = (function() {
   function CRUDLActions() {
-    this.create = new Create();
-    this.read = new Read();
-    this.update = new Update();
-    this["delete"] = new Delete();
-    this.list = new List();
+    this.create = Create;
+    this.read = Read;
+    this.update = Update;
+    this["delete"] = Delete;
+    this.list = List;
   }
 
   return CRUDLActions;

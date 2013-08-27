@@ -3,14 +3,14 @@ Action = require "../../action"
 class Create extends Action
   
   constructor: (@resource, @responder) ->
-    @route  = "/"
-    @method = "post"
     super
+    @method = "post"
+    @name = "create"
 
   invoke: (req, res) =>
     objectProperty = @resource.inflector.object()
     object = new @resource.model(req.body[objectProperty])
-    object.save (err) ->
+    object.save (err) =>
       if err
         @responder.fail(req, res, {errors: err})
       else

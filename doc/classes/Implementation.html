@@ -184,9 +184,20 @@
   <li>
     <span class='signature'>
       <a href='#use-instance'>
-        - (void) <strong>use</strong>(middlewares, condition)
+        - (void) <strong>use</strong>(middlewares, options = {})
       </a>
     </span>
+    <span class='desc'>
+      Sets up one or more middleware to be used.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#middlewaresFor-instance'>
+        - (void) <strong>middlewaresFor</strong>(action)
+      </a>
+    </span>
+    <span class='note private title'>Private</span>
     <span class='desc'>
       
     </span>
@@ -251,7 +262,65 @@
   </div>
   <div class='method_details'>
     <p class='signature' id='use-instance'>
-      - (void) <strong>use</strong>(middlewares, condition)
+      - (void) <strong>use</strong>(middlewares, options = {})
+    </p>
+    <div class='docstring'>
+  <p>Sets up one or more middleware to be used.</p><p>You can also specify conditions to decide whether to use 
+a middleware or not depending on the invoked action.</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      Using a middleware for any action
+    </h4>
+    <pre><code class='coffee'>impl.use(authMiddleware);</code></pre>
+    <h4>
+      Using a middleware only for unsafe HTTP methods
+    </h4>
+    <pre><code class='coffee'>impl.use(authMiddleware, {if: function(action){
+  return action.method != &quot;get&quot;;
+}});</code></pre>
+  </div>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>middlewares</span>
+      <span class='type'>
+        (<tt>Array&lt;Functions&gt; or Function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>one or more middleware to be used</span>
+    </li>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>Object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>options to set up middlewares:</span>
+    </li>
+  </ul>
+  <h3>
+    Options Hash:
+    (option):
+  </h3>
+  <ul class='options'>
+    <li>
+      <span class='name'>if</span>
+      <span class='type'>
+        (<tt>Function&lt;<a href='../classes/Action.html'>Action</a>&gt;</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>specify a condition to decide whether to use a middleware or not depending on the invoked action.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='middlewaresFor-instance'>
+      - (void) <strong>middlewaresFor</strong>(action)
+      (private)
     </p>
     <div class='tags'>
 </div>
@@ -267,7 +336,7 @@
     </div>
     <div id='footer'>
   Generated on
-  Mon Aug 26 2013 19:30:23 GMT+0200 (CEST)
+  Tue Aug 27 2013 15:16:00 GMT+0200 (CEST)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
   v1.7.2

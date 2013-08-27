@@ -12,6 +12,7 @@ DefaultImplementation = (function(_super) {
   __extends(DefaultImplementation, _super);
 
   function DefaultImplementation() {
+    DefaultImplementation.__super__.constructor.apply(this, arguments);
     this.actions = new CRUDLActions();
     this.responder = new JsendResponder();
   }

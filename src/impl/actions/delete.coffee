@@ -2,16 +2,17 @@ Action = require "../../action"
 
 class Delete extends Action
   constructor: (@resource, @responder) ->
+    super
     @route  = "/:id"
     @method = "delete"
-    super
+    @name = "delete"
 
   invoke: (req, res) =>
-    @resource.model.findById req.params.id, (err, object) ->
+    @resource.model.findById req.params.id, (err, object) =>
       if err
         @responder.fail(req, res, {errors: err})
       else
-        object.remove (err) ->
+        object.remove (err) =>
           if err
             @responder.fail(req, res, {errors: err})
           else
